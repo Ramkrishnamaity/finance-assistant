@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const incomeController = require('../controllers/income.controller');
-const incomeValidation = require('../common/schemas/income.validate');
-const { JWTUser } = require('../middlewares/auth.middleware');
+import incomeController from '../controllers/income.controller.js';
+import incomeValidation from '../utils/schemas/income.validate.js';
+import { JWTUser } from '../middlewares/auth.middleware.js';
 
 // All routes require authentication
 router.use(JWTUser);
@@ -22,4 +22,4 @@ router.put('/:id', incomeValidation.incomeIdParam, incomeValidation.updateIncome
 // Delete income
 router.delete('/:id', incomeValidation.incomeIdParam, incomeController.deleteIncome);
 
-module.exports = router;
+export default router;

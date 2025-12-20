@@ -1,5 +1,5 @@
-const { controller } = require('../common/helpers/controller');
-const authService = require('../services/auth.service');
+import { controller } from '../utils/helpers/controller.helper.js';
+import authService from '../services/auth.service.js';
 
 const authController = {
   /**
@@ -42,4 +42,4 @@ const authController = {
   })
 };
 
-module.exports = authController;
+export default authController;

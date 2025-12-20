@@ -1,6 +1,6 @@
-const Expense = require('../models/expense.model');
-const Category = require('../models/category.model');
-const StatusError = require('../common/helpers/statusError');
+import Expense from '../models/expense.model.js';
+import Category from '../models/category.model.js';
+import StatusError from '../utils/helpers/statusError.helper.js';
 
 const expenseService = {
   /**
@@ -123,4 +123,4 @@ const expenseService = {
   }
 };
 
-module.exports = expenseService;
+export default expenseService;

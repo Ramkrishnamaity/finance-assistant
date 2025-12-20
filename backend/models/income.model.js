@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const incomeSchema = new mongoose.Schema({
   amount: {
@@ -43,4 +43,4 @@ const incomeSchema = new mongoose.Schema({
 incomeSchema.index({ userId: 1, date: -1, freezed: 1 });
 incomeSchema.index({ userId: 1, categoryId: 1, freezed: 1 });
 
-module.exports = mongoose.model('Income', incomeSchema);
+export default mongoose.model('Income', incomeSchema);

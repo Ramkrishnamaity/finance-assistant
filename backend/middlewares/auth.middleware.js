@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
-const StatusError = require('../common/helpers/statusError');
-const User = require('../models/user.model');
+import jwt from 'jsonwebtoken';
+import StatusError from '../utils/helpers/statusError.helper.js';
+import User from '../models/user.model.js';
 
 /**
  * JWT Authentication Middleware
@@ -46,4 +46,4 @@ const JWTUser = async (req, res, next) => {
   }
 };
 
-module.exports = { JWTUser };
+export { JWTUser };

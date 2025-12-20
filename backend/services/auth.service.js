@@ -1,6 +1,6 @@
-const User = require('../models/user.model');
-const jwt = require('jsonwebtoken');
-const StatusError = require('../common/helpers/statusError');
+import User from '../models/user.model.js';
+import jwt from 'jsonwebtoken';
+import StatusError from '../utils/helpers/statusError.helper.js';
 
 const authService = {
   /**
@@ -86,4 +86,4 @@ const authService = {
   }
 };
 
-module.exports = authService;
+export default authService;

@@ -1,4 +1,4 @@
-const { celebrate, Joi, Segments } = require('celebrate');
+import { celebrate, Joi, Segments } from 'celebrate';
 
 const authValidation = {
   /**
@@ -43,4 +43,4 @@ const authValidation = {
   })
 };
 
-module.exports = authValidation;
+export default authValidation;

@@ -1,5 +1,5 @@
-const { controller } = require('../common/helpers/controller');
-const categoryService = require('../services/category.service');
+import { controller } from '../utils/helpers/controller.helper.js';
+import categoryService from '../services/category.service.js';
 
 const categoryController = {
   /**
@@ -79,4 +79,4 @@ const categoryController = {
   })
 };
 
-module.exports = categoryController;
+export default categoryController;

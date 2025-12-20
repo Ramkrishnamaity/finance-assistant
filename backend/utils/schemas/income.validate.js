@@ -1,4 +1,4 @@
-const { celebrate, Joi, Segments } = require('celebrate');
+import { celebrate, Joi, Segments } from 'celebrate';
 
 const incomeValidation = {
   /**
@@ -81,4 +81,4 @@ const incomeValidation = {
   })
 };
 
-module.exports = incomeValidation;
+export default incomeValidation;

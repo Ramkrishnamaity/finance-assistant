@@ -12,4 +12,4 @@ const controller = (handler) => {
   };
 };
 
-module.exports = { controller };
+export { controller };

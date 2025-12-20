@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const expenseController = require('../controllers/expense.controller');
-const expenseValidation = require('../common/schemas/expense.validate');
-const { JWTUser } = require('../middlewares/auth.middleware');
+import expenseController from '../controllers/expense.controller.js';
+import expenseValidation from '../utils/schemas/expense.validate.js';
+import { JWTUser } from '../middlewares/auth.middleware.js';
 
 // All routes require authentication
 router.use(JWTUser);
@@ -22,4 +22,4 @@ router.put('/:id', expenseValidation.expenseIdParam, expenseValidation.updateExp
 // Delete expense
 router.delete('/:id', expenseValidation.expenseIdParam, expenseController.deleteExpense);
 
-module.exports = router;
+export default router;

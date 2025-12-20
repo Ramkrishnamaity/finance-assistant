@@ -1,5 +1,5 @@
-const { controller } = require('../common/helpers/controller');
-const incomeService = require('../services/income.service');
+import { controller } from '../utils/helpers/controller.helper.js';
+import incomeService from '../services/income.service.js';
 
 const incomeController = {
   /**
@@ -81,4 +81,4 @@ const incomeController = {
   })
 };
 
-module.exports = incomeController;
+export default incomeController;

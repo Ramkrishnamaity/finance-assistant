@@ -1,5 +1,5 @@
-const { controller } = require('../common/helpers/controller');
-const statisticsService = require('../services/statistics.service');
+import { controller } from '../utils/helpers/controller.helper.js';
+import statisticsService from '../services/statistics.service.js';
 
 const statisticsController = {
   /**
@@ -91,4 +91,4 @@ const statisticsController = {
   })
 };
 
-module.exports = statisticsController;
+export default statisticsController;

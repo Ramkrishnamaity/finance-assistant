@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const authRoutes = require('./auth.route');
-const categoryRoutes = require('./category.route');
-const expenseRoutes = require('./expense.route');
-const incomeRoutes = require('./income.route');
-const statisticsRoutes = require('./statistics.route');
+import authRoutes from './auth.route.js';
+import categoryRoutes from './category.route.js';
+import expenseRoutes from './expense.route.js';
+import incomeRoutes from './income.route.js';
+import statisticsRoutes from './statistics.route.js';
 
 // Mount routes
 router.use('/auth', authRoutes);
@@ -14,4 +14,4 @@ router.use('/expenses', expenseRoutes);
 router.use('/incomes', incomeRoutes);
 router.use('/statistics', statisticsRoutes);
 
-module.exports = router;
+export default router;

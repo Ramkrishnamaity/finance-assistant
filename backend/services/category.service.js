@@ -1,5 +1,5 @@
-const Category = require('../models/category.model');
-const StatusError = require('../common/helpers/statusError');
+import Category from '../models/category.model.js';
+import StatusError from '../utils/helpers/statusError.helper.js';
 
 const categoryService = {
   /**
@@ -83,4 +83,4 @@ const categoryService = {
   }
 };
 
-module.exports = categoryService;
+export default categoryService;

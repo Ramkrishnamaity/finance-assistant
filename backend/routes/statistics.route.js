@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const statisticsController = require('../controllers/statistics.controller');
-const { JWTUser } = require('../middlewares/auth.middleware');
+import statisticsController from '../controllers/statistics.controller.js';
+import { JWTUser } from '../middlewares/auth.middleware.js';
 
 // All routes require authentication
 router.use(JWTUser);
@@ -21,4 +21,4 @@ router.get('/monthly-trend', statisticsController.getMonthlyTrend);
 // Get recent transactions
 router.get('/recent-transactions', statisticsController.getRecentTransactions);
 
-module.exports = router;
+export default router;

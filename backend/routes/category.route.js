@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
-const categoryController = require('../controllers/category.controller');
-const categoryValidation = require('../common/schemas/category.validate');
-const { JWTUser } = require('../middlewares/auth.middleware');
+import categoryController from '../controllers/category.controller.js';
+import categoryValidation from '../utils/schemas/category.validate.js';
+import { JWTUser } from '../middlewares/auth.middleware.js';
 
 // All routes require authentication
 router.use(JWTUser);
@@ -22,4 +22,4 @@ router.put('/:id', categoryValidation.categoryIdParam, categoryValidation.update
 // Delete category
 router.delete('/:id', categoryValidation.categoryIdParam, categoryController.deleteCategory);
 
-module.exports = router;
+export default router;

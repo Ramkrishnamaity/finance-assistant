@@ -1,6 +1,6 @@
-const Expense = require('../models/expense.model');
-const Income = require('../models/income.model');
-const Category = require('../models/category.model');
+import Expense from '../models/expense.model.js';
+import Income from '../models/income.model.js';
+import Category from '../models/category.model.js';
 
 const statisticsService = {
   /**
@@ -245,4 +245,4 @@ const statisticsService = {
   }
 };
 
-module.exports = statisticsService;
+export default statisticsService;
