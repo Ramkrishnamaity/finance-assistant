@@ -26,7 +26,7 @@ const expenseService = {
     }
 
     const expenses = await Expense.find(query)
-      .populate('categoryId', 'name icon color type')
+      .populate('categoryId', 'name type')
       .sort({ date: -1 });
 
     return expenses;
@@ -40,7 +40,7 @@ const expenseService = {
       _id: expenseId,
       userId,
       freezed: 0
-    }).populate('categoryId', 'name icon color type');
+    }).populate('categoryId', 'name type');
 
     if (!expense) {
       throw new StatusError('Expense not found', 404);
@@ -71,7 +71,7 @@ const expenseService = {
     };
 
     const expense = await Expense.create(expenseData);
-    return await expense.populate('categoryId', 'name icon color type');
+    return await expense.populate('categoryId', 'name type');
   },
 
   /**
@@ -96,7 +96,7 @@ const expenseService = {
       { _id: expenseId, userId, freezed: 0 },
       data,
       { new: true, runValidators: true }
-    ).populate('categoryId', 'name icon color type');
+    ).populate('categoryId', 'name type');
 
     if (!expense) {
       throw new StatusError('Expense not found', 404);

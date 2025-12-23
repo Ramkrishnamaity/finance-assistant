@@ -81,9 +81,7 @@ const statisticsService = {
           _id: 1,
           total: 1,
           count: 1,
-          name: '$category.name',
-          icon: '$category.icon',
-          color: '$category.color'
+          name: '$category.name'
         }
       },
       { $sort: { total: -1 } }
@@ -127,9 +125,7 @@ const statisticsService = {
           _id: 1,
           total: 1,
           count: 1,
-          name: '$category.name',
-          icon: '$category.icon',
-          color: '$category.color'
+          name: '$category.name'
         }
       },
       { $sort: { total: -1 } }
@@ -221,13 +217,13 @@ const statisticsService = {
     const query = { userId, freezed: 0 };
 
     const expenses = await Expense.find(query)
-      .populate('categoryId', 'name icon color')
+      .populate('categoryId', 'name')
       .sort({ date: -1 })
       .limit(limit)
       .lean();
 
     const incomes = await Income.find(query)
-      .populate('categoryId', 'name icon color')
+      .populate('categoryId', 'name')
       .sort({ date: -1 })
       .limit(limit)
       .lean();

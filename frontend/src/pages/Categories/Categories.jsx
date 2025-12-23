@@ -7,13 +7,8 @@ import { Plus, Edit2, Trash2, X } from 'lucide-react';
 
 const categorySchema = Yup.object({
   name: Yup.string().min(2).max(50).required('Category name is required'),
-  type: Yup.string().oneOf(['expense', 'income']).required('Type is required'),
-  icon: Yup.string(),
-  color: Yup.string()
+  type: Yup.string().oneOf(['expense', 'income']).required('Type is required')
 });
-
-const EMOJI_OPTIONS = ['💰', '🏠', '🍔', '🚗', '💊', '🎓', '🎮', '👕', '✈️', '📱', '💼', '🎬'];
-const COLOR_OPTIONS = ['#ef4444', '#f59e0b', '#10b981', '#3b82f6', '#6366f1', '#8b5cf6', '#ec4899', '#14b8a6'];
 
 function Categories() {
   const [categories, setCategories] = useState([]);
@@ -136,23 +131,15 @@ function Categories() {
               className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition"
             >
               <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center space-x-3">
-                  <div
-                    className="w-12 h-12 rounded-full flex items-center justify-center text-2xl"
-                    style={{ backgroundColor: category.color + '20' }}
-                  >
-                    {category.icon}
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-gray-900">{category.name}</h3>
-                    <span className={`text-xs px-2 py-1 rounded ${
-                      category.type === 'income'
-                        ? 'bg-green-100 text-green-700'
-                        : 'bg-red-100 text-red-700'
-                    }`}>
-                      {category.type}
-                    </span>
-                  </div>
+                <div>
+                  <h3 className="font-semibold text-gray-900">{category.name}</h3>
+                  <span className={`text-xs px-2 py-1 rounded ${
+                    category.type === 'income'
+                      ? 'bg-green-100 text-green-700'
+                      : 'bg-red-100 text-red-700'
+                  }`}>
+                    {category.type}
+                  </span>
                 </div>
               </div>
               <div className="flex space-x-2">
@@ -193,9 +180,7 @@ function Categories() {
               <Formik
                 initialValues={{
                   name: editingCategory?.name || '',
-                  type: editingCategory?.type || 'expense',
-                  icon: editingCategory?.icon || '💰',
-                  color: editingCategory?.color || '#6366f1'
+                  type: editingCategory?.type || 'expense'
                 }}
                 validationSchema={categorySchema}
                 onSubmit={handleSubmit}
@@ -229,49 +214,6 @@ function Categories() {
                         <option value="income">Income</option>
                       </Field>
                       <ErrorMessage name="type" component="div" className="text-red-500 text-sm mt-1" />
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Icon
-                      </label>
-                      <div className="grid grid-cols-6 gap-2">
-                        {EMOJI_OPTIONS.map(emoji => (
-                          <button
-                            key={emoji}
-                            type="button"
-                            onClick={() => setFieldValue('icon', emoji)}
-                            className={`text-2xl p-2 rounded-lg border-2 transition ${
-                              values.icon === emoji
-                                ? 'border-primary-500 bg-primary-50'
-                                : 'border-gray-200 hover:border-gray-300'
-                            }`}
-                          >
-                            {emoji}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Color
-                      </label>
-                      <div className="grid grid-cols-8 gap-2">
-                        {COLOR_OPTIONS.map(color => (
-                          <button
-                            key={color}
-                            type="button"
-                            onClick={() => setFieldValue('color', color)}
-                            className={`w-10 h-10 rounded-lg border-2 transition ${
-                              values.color === color
-                                ? 'border-gray-900 scale-110'
-                                : 'border-gray-200'
-                            }`}
-                            style={{ backgroundColor: color }}
-                          />
-                        ))}
-                      </div>
                     </div>
 
                     <div className="flex space-x-3 pt-4">

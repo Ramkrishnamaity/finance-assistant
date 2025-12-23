@@ -1,6 +1,7 @@
 import User from '../models/user.model.js';
-import jwt from 'jsonwebtoken';
 import StatusError from '../utils/helpers/statusError.helper.js';
+import commonHelpers from '../utils/helpers/common.helper.js';
+import jwtService from './jwt.service.js';
 
 const authService = {
   /**
@@ -14,20 +15,17 @@ const authService = {
     }
 
     // Create user
-    const user = await User.create({ name, email, password });
+    const user = await User.create({ name, email, password, createdAt: commonHelpers.getCurrentDateTime() });
 
     // Generate token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRY }
-    );
-
+    const token = jwtService.getToken({ userId: user._id });
+    
     return {
       user: {
         id: user._id,
         name: user.name,
-        email: user.email
+        email: user.email,
+        createdAt: user.createdAt
       },
       token
     };
@@ -51,11 +49,7 @@ const authService = {
     }
 
     // Generate token
-    const token = jwt.sign(
-      { userId: user._id },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRY }
-    );
+    const token = jwtService.getToken({ userId: user._id });
 
     return {
       user: {

@@ -1,6 +1,25 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import commonValidation from './src/utils/schemas/common.validate.js';
+
+// Validate environment variables at startup
+let validatedEnv;
+try {
+  validatedEnv = commonValidation.envSchema.validateSync(process.env, {
+    abortEarly: false,
+    stripUnknown: true,
+  });
+  console.log('✔️ Environment file validated successfully.');
+} catch (error) {
+  console.error('❌ Environment file validation error:');
+  if (error.errors) {
+    error.errors.forEach(err => console.error(`  - ${err}`));
+  } else {
+    console.error(`  - ${error.message}`);
+  }
+  process.exit(1);
+}
 
 export default defineConfig({
   plugins: [
@@ -59,7 +78,7 @@ export default defineConfig({
     })
   ],
   server: {
-    port: 5173,
+    port: validatedEnv.PORT,
     open: true
   }
 });

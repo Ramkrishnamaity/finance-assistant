@@ -147,11 +147,9 @@ function Analytics() {
                       <div
                         className="w-4 h-4 rounded"
                         style={{
-                          backgroundColor:
-                            category.color || COLORS[index % COLORS.length]
+                          backgroundColor: COLORS[index % COLORS.length]
                         }}
                       />
-                      <span className="text-lg">{category.icon}</span>
                       <span className="font-medium text-gray-900">
                         {category.name}
                       </span>
@@ -211,11 +209,9 @@ function Analytics() {
                       <div
                         className="w-4 h-4 rounded"
                         style={{
-                          backgroundColor:
-                            category.color || COLORS[index % COLORS.length]
+                          backgroundColor: COLORS[index % COLORS.length]
                         }}
                       />
-                      <span className="text-lg">{category.icon}</span>
                       <span className="font-medium text-gray-900">
                         {category.name}
                       </span>

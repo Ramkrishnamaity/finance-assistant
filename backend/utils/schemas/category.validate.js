@@ -16,12 +16,6 @@ const categoryValidation = {
         .messages({
           'string.empty': 'Category type is required',
           'any.only': 'Type must be either expense or income'
-        }),
-      icon: Joi.string().optional().trim(),
-      color: Joi.string().optional().trim()
-        .pattern(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)
-        .messages({
-          'string.pattern.base': 'Color must be a valid hex color code'
         })
     })
   }),
@@ -35,12 +29,6 @@ const categoryValidation = {
         .messages({
           'string.min': 'Category name must be at least 2 characters',
           'string.max': 'Category name cannot exceed 50 characters'
-        }),
-      icon: Joi.string().optional().trim(),
-      color: Joi.string().optional().trim()
-        .pattern(/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/)
-        .messages({
-          'string.pattern.base': 'Color must be a valid hex color code'
         })
     })
   }),

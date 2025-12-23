@@ -39,8 +39,7 @@ function Layout({ children }) {
     <div className="min-h-screen bg-gray-50">
       {/* Mobile Menu Button */}
       <div className="lg:hidden fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
-        <div className="flex items-center justify-between p-4">
-          <h1 className="text-xl font-bold text-primary-600">Finance Assistant</h1>
+        <div className="flex items-center justify-end p-4">
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="p-2 rounded-lg hover:bg-gray-100"
@@ -53,19 +52,14 @@ function Layout({ children }) {
       {/* Sidebar */}
       <aside
         className={`
-          fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-40
+          fixed top-0 left-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-[60]
           ${sidebarOpen ? 'translate-x-0' : '-translate-x-full'}
           lg:translate-x-0
         `}
       >
         <div className="flex flex-col h-full">
-          {/* Logo */}
-          <div className="p-6 border-b hidden lg:block">
-            <h1 className="text-2xl font-bold text-primary-600">Finance Assistant</h1>
-          </div>
-
           {/* User Info */}
-          <div className="p-6 border-b">
+          <div className="p-6 border-b mt-4">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 rounded-full bg-primary-500 flex items-center justify-center text-white font-semibold">
                 {user?.name?.charAt(0).toUpperCase()}
@@ -120,7 +114,7 @@ function Layout({ children }) {
       {/* Overlay for mobile */}
       {sidebarOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-30 lg:hidden"
+          className="fixed inset-0 bg-black bg-opacity-50 z-[55] lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}

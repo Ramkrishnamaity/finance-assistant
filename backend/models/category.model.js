@@ -14,14 +14,6 @@ const categorySchema = new mongoose.Schema({
       message: 'Type must be either expense or income'
     }
   },
-  icon: {
-    type: String,
-    default: '💰'
-  },
-  color: {
-    type: String,
-    default: '#6366f1'
-  },
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -33,7 +25,7 @@ const categorySchema = new mongoose.Schema({
     enum: [0, 1]
   }
 }, {
-  timestamps: true
+  timestamps: false
 });
 
 // Index for faster queries

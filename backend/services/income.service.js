@@ -26,7 +26,7 @@ const incomeService = {
     }
 
     const incomes = await Income.find(query)
-      .populate('categoryId', 'name icon color type')
+      .populate('categoryId', 'name type')
       .sort({ date: -1 });
 
     return incomes;
@@ -40,7 +40,7 @@ const incomeService = {
       _id: incomeId,
       userId,
       freezed: 0
-    }).populate('categoryId', 'name icon color type');
+    }).populate('categoryId', 'name type');
 
     if (!income) {
       throw new StatusError('Income not found', 404);
@@ -71,7 +71,7 @@ const incomeService = {
     };
 
     const income = await Income.create(incomeData);
-    return await income.populate('categoryId', 'name icon color type');
+    return await income.populate('categoryId', 'name type');
   },
 
   /**
@@ -96,7 +96,7 @@ const incomeService = {
       { _id: incomeId, userId, freezed: 0 },
       data,
       { new: true, runValidators: true }
-    ).populate('categoryId', 'name icon color type');
+    ).populate('categoryId', 'name type');
 
     if (!income) {
       throw new StatusError('Income not found', 404);
