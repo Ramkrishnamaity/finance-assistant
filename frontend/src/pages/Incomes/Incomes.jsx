@@ -88,7 +88,7 @@ function Incomes() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Incomes</h1>
+        <h1 className="text-3xl font-bold text-foreground">Incomes</h1>
         <button
           onClick={() => setShowModal(true)}
           className="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-green-700 transition"
@@ -103,31 +103,31 @@ function Incomes() {
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-600"></div>
         </div>
       ) : (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100">
+        <div className="bg-card rounded-xl shadow-sm border border-border">
           {incomes.length === 0 ? (
-            <p className="text-center text-gray-500 py-12">No incomes yet</p>
+            <p className="text-center text-muted-foreground py-12">No incomes yet</p>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full">
-                <thead className="bg-gray-50 border-b border-gray-200">
+                <thead className="bg-background border-b border-border">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Description</th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Category</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Amount</th>
-                    <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Actions</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase">Date</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase">Description</th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase">Category</th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase">Amount</th>
+                    <th className="px-6 py-3 text-right text-xs font-medium text-muted-foreground uppercase">Actions</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-200">
                   {incomes.map((income) => (
-                    <tr key={income._id} className="hover:bg-gray-50 transition">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
+                    <tr key={income._id} className="hover:bg-background transition">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-muted-foreground">
                         {format(new Date(income.date), 'MMM dd, yyyy')}
                       </td>
                       <td className="px-6 py-4">
-                        <p className="text-sm font-medium text-gray-900">{income.description}</p>
+                        <p className="text-sm font-medium text-foreground">{income.description}</p>
                         {income.notes && (
-                          <p className="text-xs text-gray-500 mt-1">{income.notes}</p>
+                          <p className="text-xs text-muted-foreground mt-1">{income.notes}</p>
                         )}
                       </td>
                       <td className="px-6 py-4">
@@ -172,8 +172,8 @@ function Incomes() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full">
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+          <div className="bg-card rounded-xl shadow-2xl max-w-md w-full">
+            <div className="p-6 border-b border-border flex justify-between items-center">
               <h2 className="text-xl font-semibold">
                 {editingIncome ? 'Edit Income' : 'Add Income'}
               </h2>
@@ -182,7 +182,7 @@ function Incomes() {
                   setShowModal(false);
                   setEditingIncome(null);
                 }}
-                className="text-gray-400 hover:text-gray-600"
+                className="text-gray-400 hover:text-muted-foreground"
               >
                 <X size={24} />
               </button>
@@ -283,7 +283,7 @@ function Incomes() {
                           setShowModal(false);
                           setEditingIncome(null);
                         }}
-                        className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
+                        className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-background transition"
                       >
                         Cancel
                       </button>

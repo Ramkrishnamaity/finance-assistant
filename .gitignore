@@ -8,6 +8,8 @@
 
 frontend_demo/
 backend_demo/
+src/
+.claude
 
 frontend/dist
 

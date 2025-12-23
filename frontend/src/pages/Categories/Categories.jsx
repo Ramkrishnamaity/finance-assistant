@@ -91,7 +91,7 @@ function Categories() {
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
-        <h1 className="text-3xl font-bold text-gray-900">Categories</h1>
+        <h1 className="text-3xl font-bold text-foreground">Categories</h1>
         <button
           onClick={() => setShowModal(true)}
           className="bg-primary-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-primary-700 transition"
@@ -110,7 +110,7 @@ function Categories() {
             className={`px-4 py-2 rounded-lg capitalize transition ${
               filter === type
                 ? 'bg-primary-600 text-white'
-                : 'bg-white text-gray-700 hover:bg-gray-100'
+                : 'bg-card text-gray-700 hover:bg-muted'
             }`}
           >
             {type}
@@ -121,18 +121,18 @@ function Categories() {
       {/* Categories Grid */}
       {loading ? (
         <div className="flex justify-center py-12">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {filteredCategories.map((category) => (
             <div
               key={category._id}
-              className="bg-white rounded-lg shadow-sm p-4 border border-gray-100 hover:shadow-md transition"
+              className="bg-card rounded-lg shadow-sm p-4 border border-border hover:shadow-md transition"
             >
               <div className="flex items-start justify-between mb-3">
                 <div>
-                  <h3 className="font-semibold text-gray-900">{category.name}</h3>
+                  <h3 className="font-semibold text-foreground">{category.name}</h3>
                   <span className={`text-xs px-2 py-1 rounded ${
                     category.type === 'income'
                       ? 'bg-green-100 text-green-700'
@@ -166,12 +166,12 @@ function Categories() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-6 border-b border-gray-100 flex justify-between items-center sticky top-0 bg-white">
+          <div className="bg-card rounded-xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6 border-b border-border flex justify-between items-center sticky top-0 bg-white">
               <h2 className="text-xl font-semibold">
                 {editingCategory ? 'Edit Category' : 'Add Category'}
               </h2>
-              <button onClick={closeModal} className="text-gray-400 hover:text-gray-600">
+              <button onClick={closeModal} className="text-gray-400 hover:text-muted-foreground">
                 <X size={24} />
               </button>
             </div>
@@ -208,7 +208,7 @@ function Categories() {
                         as="select"
                         name="type"
                         disabled={!!editingCategory}
-                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-gray-100"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent disabled:bg-muted"
                       >
                         <option value="expense">Expense</option>
                         <option value="income">Income</option>
@@ -220,7 +220,7 @@ function Categories() {
                       <button
                         type="button"
                         onClick={closeModal}
-                        className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
+                        className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-background transition"
                       >
                         Cancel
                       </button>

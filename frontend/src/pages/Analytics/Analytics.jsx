@@ -59,18 +59,18 @@ function Analytics() {
   if (loading) {
     return (
       <div className="flex items-center justify-center h-96">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
       </div>
     );
   }
 
   return (
     <div className="space-y-6">
-      <h1 className="text-3xl font-bold text-gray-900">Analytics</h1>
+      <h1 className="text-3xl font-bold text-foreground">Analytics</h1>
 
       {/* Monthly Trend */}
-      <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">
+      <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+        <h2 className="text-xl font-semibold text-foreground mb-6">
           Monthly Income vs Expenses
         </h2>
         <ResponsiveContainer width="100%" height={300}>
@@ -103,12 +103,12 @@ function Analytics() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Expenses by Category - Pie Chart */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <h2 className="text-xl font-semibold text-foreground mb-6">
             Expenses by Category
           </h2>
           {expensesByCategory.length === 0 ? (
-            <p className="text-center text-gray-500 py-12">No expense data</p>
+            <p className="text-center text-muted-foreground py-12">No expense data</p>
           ) : (
             <>
               <ResponsiveContainer width="100%" height={300}>
@@ -141,7 +141,7 @@ function Analytics() {
                 {expensesByCategory.map((category, index) => (
                   <div
                     key={category._id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-background rounded-lg"
                   >
                     <div className="flex items-center space-x-3">
                       <div
@@ -150,7 +150,7 @@ function Analytics() {
                           backgroundColor: COLORS[index % COLORS.length]
                         }}
                       />
-                      <span className="font-medium text-gray-900">
+                      <span className="font-medium text-foreground">
                         {category.name}
                       </span>
                     </div>
@@ -158,7 +158,7 @@ function Analytics() {
                       <p className="font-semibold text-red-600">
                         {formatCurrency(category.total)}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         {category.count} transactions
                       </p>
                     </div>
@@ -170,12 +170,12 @@ function Analytics() {
         </div>
 
         {/* Incomes by Category - Bar Chart */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-          <h2 className="text-xl font-semibold text-gray-900 mb-6">
+        <div className="bg-card rounded-xl shadow-sm border border-border p-6">
+          <h2 className="text-xl font-semibold text-foreground mb-6">
             Incomes by Category
           </h2>
           {incomesByCategory.length === 0 ? (
-            <p className="text-center text-gray-500 py-12">No income data</p>
+            <p className="text-center text-muted-foreground py-12">No income data</p>
           ) : (
             <>
               <ResponsiveContainer width="100%" height={300}>
@@ -203,7 +203,7 @@ function Analytics() {
                 {incomesByCategory.map((category, index) => (
                   <div
                     key={category._id}
-                    className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                    className="flex items-center justify-between p-3 bg-background rounded-lg"
                   >
                     <div className="flex items-center space-x-3">
                       <div
@@ -212,7 +212,7 @@ function Analytics() {
                           backgroundColor: COLORS[index % COLORS.length]
                         }}
                       />
-                      <span className="font-medium text-gray-900">
+                      <span className="font-medium text-foreground">
                         {category.name}
                       </span>
                     </div>
@@ -220,7 +220,7 @@ function Analytics() {
                       <p className="font-semibold text-green-600">
                         {formatCurrency(category.total)}
                       </p>
-                      <p className="text-xs text-gray-500">
+                      <p className="text-xs text-muted-foreground">
                         {category.count} transactions
                       </p>
                     </div>
