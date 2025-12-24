@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PWA Icon Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #6366f1;
+            text-align: center;
+        }
+        canvas {
+            border: 2px solid #ddd;
+            margin: 20px 0;
+            display: block;
+        }
+        button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #4f46e5;
+        }
+        .controls {
+            margin: 20px 0;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Finance Assistance PWA Icon Generator</h1>
+
+        <div class="controls">
+            <label for="iconText">Icon Text (e.g., FA):</label>
+            <input type="text" id="iconText" value="FA" maxlength="2">
+
+            <label for="bgColor">Background Color:</label>
+            <input type="color" id="bgColor" value="#6366f1">
+
+            <label for="textColor">Text Color:</label>
+            <input type="color" id="textColor" value="#ffffff">
+        </div>
+
+        <canvas id="iconCanvas" width="512" height="512"></canvas>
+
+        <button onclick="generateIcon()">Generate Icon</button>
+        <button onclick="downloadAllSizes()">Download All Sizes</button>
+
+        <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-left: 4px solid #6366f1;">
+            <strong>Instructions:</strong>
+            <ol>
+                <li>Customize the text and colors above</li>
+                <li>Click "Generate Icon" to preview</li>
+                <li>Click "Download All Sizes" to download all required icon sizes</li>
+                <li>Save the downloaded icons to the <code>/frontend/public/</code> folder</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('iconCanvas');
+        const ctx = canvas.getContext('2d');
+        const sizes = [72, 96, 128, 144, 152, 192, 384, 512];
+
+        function generateIcon() {
+            const text = document.getElementById('iconText').value || 'FA';
+            const bgColor = document.getElementById('bgColor').value;
+            const textColor = document.getElementById('textColor').value;
+
+            // Clear canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw background
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            // Draw text
+            ctx.fillStyle = textColor;
+            ctx.font = 'bold 256px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, canvas.width / 2, canvas.height / 2);
+        }
+
+        function downloadIcon(size) {
+            const tempCanvas = document.createElement('canvas');
+            tempCanvas.width = size;
+            tempCanvas.height = size;
+            const tempCtx = tempCanvas.getContext('2d');
+
+            // Draw scaled version
+            tempCtx.drawImage(canvas, 0, 0, size, size);
+
+            // Download
+            tempCanvas.toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.download = `icon-${size}x${size}.png`;
+                link.href = url;
+                link.click();
+                URL.revokeObjectURL(url);
+            });
+        }
+
+        function downloadAllSizes() {
+            generateIcon(); // Make sure icon is generated
+            sizes.forEach((size, index) => {
+                setTimeout(() => downloadIcon(size), index * 500);
+            });
+        }
+
+        // Generate default icon on load
+        window.onload = generateIcon;
+
+        // Update preview when inputs change
+        document.getElementById('iconText').addEventListener('input', generateIcon);
+        document.getElementById('bgColor').addEventListener('change', generateIcon);
+        document.getElementById('textColor').addEventListener('change', generateIcon);
+    </script>
+</body>
+</html>
