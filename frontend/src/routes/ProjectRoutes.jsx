@@ -3,8 +3,7 @@ import { useSelector } from 'react-redux';
 import Login from '../pages/Auth/Login';
 import Register from '../pages/Auth/Register';
 import Dashboard from '../pages/Dashboard/Dashboard';
-import Expenses from '../pages/Expenses/Expenses';
-import Incomes from '../pages/Incomes/Incomes';
+import Transactions from '../pages/Transactions/Transactions';
 import Categories from '../pages/Categories/Categories';
 import Analytics from '../pages/Analytics/Analytics';
 import Layout from '../components/Layout/Layout';
@@ -40,8 +39,7 @@ function ProjectRoutes() {
 
       {/* Protected Routes */}
       <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-      <Route path="/expenses" element={<ProtectedRoute><Expenses /></ProtectedRoute>} />
-      <Route path="/incomes" element={<ProtectedRoute><Incomes /></ProtectedRoute>} />
+      <Route path="/transactions" element={<ProtectedRoute><Transactions /></ProtectedRoute>} />
       <Route path="/categories" element={<ProtectedRoute><Categories /></ProtectedRoute>} />
       <Route path="/analytics" element={<ProtectedRoute><Analytics /></ProtectedRoute>} />
 

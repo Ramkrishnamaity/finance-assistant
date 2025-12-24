@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../store/features/authSlice";
 import {
   LayoutDashboard,
-  TrendingDown,
-  TrendingUp,
+  ArrowRightLeft,
   Tag,
   BarChart3,
   Menu,
@@ -29,8 +28,7 @@ function Layout({ children }) {
 
   const menuItems = [
     { path: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
-    { path: "/expenses", label: "Expenses", icon: TrendingDown },
-    { path: "/incomes", label: "Incomes", icon: TrendingUp },
+    { path: "/transactions", label: "Transactions", icon: ArrowRightLeft },
     { path: "/categories", label: "Categories", icon: Tag },
     { path: "/analytics", label: "Analytics", icon: BarChart3 },
   ];
