@@ -1,18 +1,22 @@
 import fs from 'fs';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { DateTime } from 'luxon';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const commonHelpers = {
 
-    getCurrentDate: () => {
+    getCurrentDate() {
         return DateTime.utc().toISODate();
     },
 
-    getCurrentDateTime: () => {
+    getCurrentDateTime() {
         return DateTime.utc().toISO();
     },
 
-    normalizeDateInput: (value) => {
+    normalizeDateInput(value) {
 
         // DATE-ONLY
         if (!value.includes('T')) {
@@ -23,7 +27,7 @@ const commonHelpers = {
 
     },
 
-    ERROR_LOG_MSG: (time, statusCode, message) => {
+    ERROR_LOG_MSG(time, statusCode, message) {
 
         return (
 `
@@ -37,7 +41,7 @@ Message: ${message}
 
     },
 
-    logError: (err) => {
+    logError(err) {
         try {
 
             const logDir = path.join(__dirname, "../../error_logs");

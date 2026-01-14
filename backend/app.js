@@ -3,6 +3,10 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import passport from 'passport';
+import swaggerUi from 'swagger-ui-express';
+import initializePassport from './passport/index.js';
+import swaggerDocument from './swagger/index.js';
 import apiRoutes from './routes/index.js';
 import errorHandler from './utils/helpers/errorHandler.helper.js';
 import StatusError from './utils/helpers/statusError.helper.js';
@@ -10,7 +14,9 @@ import StatusError from './utils/helpers/statusError.helper.js';
 const app = express();
 
 // Middlewares
-app.use(helmet());
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: 'cross-origin' }
+}));
 
 app.use(cors({
   origin: envs.server.clientUrl,
@@ -22,6 +28,13 @@ app.use(morgan('dev'));
 app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
+
+// Passport config
+initializePassport(passport);
+app.use(passport.initialize());
+
+// Swagger API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
 app.use('/api/v1', apiRoutes);

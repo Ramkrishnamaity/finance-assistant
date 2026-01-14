@@ -29,6 +29,7 @@ axiosInstance.interceptors.request.use(
 axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
+    console.log("error ---------------", error)
     if (error.response?.status === 401) {
       // Unauthorized - logout user
       store.dispatch(logout());

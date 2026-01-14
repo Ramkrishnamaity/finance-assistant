@@ -1,30 +1,19 @@
-import jwt from 'jsonwebtoken';
+import passport from 'passport';
 import StatusError from '../utils/helpers/statusError.helper.js';
-import User from '../models/user.model.js';
 
 /**
- * JWT Authentication Middleware
+ * JWT Authentication Middleware using Passport
  * Validates JWT token and attaches user to request
  */
-const JWTUser = async (req, res, next) => {
-  try {
-    // Get token from header
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
-      throw new StatusError('No token provided', 401);
+const JWTUser = (req, res, next) => {
+  passport.authenticate('user-jwt', { session: false }, (err, user, info) => {
+    console.log("---------------", err, user, info);
+    if (err) {
+      throw StatusError.unauthorized('Invalid or expired token');
     }
 
-    const token = authHeader.split(' ')[1];
-
-    // Verify token
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Check if user exists and is not frozen
-    const user = await User.findOne({ _id: decoded.userId, freezed: 0 });
-
     if (!user) {
-      throw new StatusError('User not found or inactive', 401);
+      throw StatusError.unauthorized('Invalid or expired token');
     }
 
     // Attach user to request
@@ -35,15 +24,7 @@ const JWTUser = async (req, res, next) => {
     };
 
     next();
-  } catch (error) {
-    if (error.name === 'JsonWebTokenError') {
-      next(new StatusError('Invalid token', 401));
-    } else if (error.name === 'TokenExpiredError') {
-      next(new StatusError('Token expired', 401));
-    } else {
-      next(error);
-    }
-  }
+  })(req, res, next);
 };
 
 export { JWTUser };
